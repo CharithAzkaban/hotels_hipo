@@ -10,7 +10,7 @@ Future<List<User>> getAllUsers() async {
     final response = await Dio().get('$baseUrl/users');
     if (response.statusCode == 200) {
       List data = response.data;
-      data.map((user) => users.add(User.fromJson(user))).toList().cast<User>();
+      users.addAll(data.map((user) => User.fromJson(user)));
     }
   } on Exception catch (e) {
     debugPrint(e.toString());
